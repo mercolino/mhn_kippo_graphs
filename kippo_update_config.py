@@ -10,7 +10,7 @@ MONGO_PORT = 27017
 MYSQL_HOST = '192.168.10.20'
 MYSQL_PORT = 3306
 MYSQL_USER = 'root'
-MYSQL_PWD = 'M1gu3l.3l1a'
+MYSQL_PWD = 'password'
 
 # Kippo sql file path
 KIPPO_SQL = '/opt/mhn/scripts/kippo_mysql.sql'
