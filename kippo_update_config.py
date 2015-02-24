@@ -1,6 +1,6 @@
 # Sqlite3 DB configuration
 SQLITE_DB = '/opt/mhn/server/mhn.db'
-SQLITE_DB = '/Users/mercolino/Desktop/mhn.db'
+#SQLITE_DB = '/Users/mercolino/Desktop/mhn.db'
 
 # Mongo DB configuration
 MONGO_HOST = '192.168.10.20'
@@ -18,11 +18,10 @@ KIPPO_SQL = '/opt/mhn/scripts/kippo_mysql.sql'
 
 # Graph configuration
 KIPPO_GRAPH_PATH = '/opt/mhn/server/mhn/static/img/'
-KIPPO_GRAPH_PATH = '/Users/mercolino/Desktop/images/'
+#KIPPO_GRAPH_PATH = '/Users/mercolino/Desktop/images/'
 KIPPO_GRAPH_RES = 100
 KIPPO_GRAPH_FORMAT = 'png'
 KIPPO_FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
-KIPPO_FONT = '/usr/share/fonts/truetype/dejavu/'
 KIPPO_FONT_SIZE = 24
 
 __author__ = 'mercolino'
