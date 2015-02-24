@@ -2,6 +2,9 @@ import kippo_update_config as conf
 import matplotlib.pyplot as plt
 import pymysql
 import sys
+import pwd
+import grp
+import os
 
 
 def noGraphGenerated(name):
@@ -12,10 +15,11 @@ def noGraphGenerated(name):
         drawHeight = 6 * conf.KIPPO_GRAPH_RES
         img = Image.new('RGB', (drawWidth, drawHeight), (255, 255, 255))
         draw = ImageDraw.Draw(img)
-        font = ImageFont.trutype(conf.KIPPO_FONT, conf.KIPPO_FONT_SIZE)
-        textWidth, textHeight = draw.textsize('No Data\nAvailable', font)
-        draw.text(((drawWidth/2) - (textWidth/2), (drawHeight/2) - (textHeight/2)), "No Data\nAvailable", (0, 0, 0), font=font)
+        font = ImageFont.truetype(conf.KIPPO_FONT, conf.KIPPO_FONT_SIZE)
+        textWidth, textHeight = draw.textsize('No Data Available', font)
+        draw.text(((drawWidth/2) - (textWidth/2), (drawHeight/2) - (textHeight/2)), "No Data Available", (0, 0, 0), font=font)
         img.save(conf.KIPPO_GRAPH_PATH + name + '.' + conf.KIPPO_GRAPH_FORMAT)
+        os.chown(conf.KIPPO_GRAPH_PATH + name + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     except:
         print 'No enough data to generate the graph %s but no file generated because PIL Library was not found' % name
 
@@ -61,6 +65,7 @@ def generateBarGraph(x, y, title, graphName):
                 dpi=conf.KIPPO_GRAPH_RES,
                 format=conf.KIPPO_GRAPH_FORMAT,
                 bbox_inches='tight')
+    os.chown(conf.KIPPO_GRAPH_PATH + graphName + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     plt.clf()
 
 
@@ -77,6 +82,7 @@ def generateLineGraph(x, y, title, graphName):
                 dpi=conf.KIPPO_GRAPH_RES,
                 format=conf.KIPPO_GRAPH_FORMAT,
                 bbox_inches='tight')
+    os.chown(conf.KIPPO_GRAPH_PATH + graphName + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     plt.clf()
 
 

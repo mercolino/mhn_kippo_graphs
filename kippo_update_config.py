@@ -2,11 +2,11 @@
 SQLITE_DB = '/opt/mhn/server/mhn.db'
 
 # Mongo DB configuration
-MONGO_HOST = '192.168.10.20'
+MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
 
 # MySQL DB configuration
-MYSQL_HOST = '192.168.10.20'
+MYSQL_HOST = 'localhost'
 MYSQL_PORT = 3306
 MYSQL_USER = 'root'
 MYSQL_PWD = 'password'
@@ -15,10 +15,10 @@ MYSQL_PWD = 'password'
 KIPPO_SQL = '/opt/mhn/scripts/kippo_mysql.sql'
 
 # Graph configuration
-KIPPO_GRAPH_PATH = '/opt/mhn/server/mhn/static/img/'
+KIPPO_GRAPH_PATH = '/opt/mhn/server/mhn/static/img/kippo_graphs/'
 KIPPO_GRAPH_RES = 100
 KIPPO_GRAPH_FORMAT = 'png'
 KIPPO_FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
-KIPPO_FONT_SIZE = 24
+KIPPO_FONT_SIZE = 48
 
 __author__ = 'mercolino'
