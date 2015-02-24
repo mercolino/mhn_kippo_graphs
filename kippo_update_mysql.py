@@ -7,7 +7,7 @@ import pymysql
 
 def usage():
     """Function to print how to use the script"""
-    print "Python Script to create the kippo databases, username and paswords to keep the log data centralized, " \
+    print "Python Script to create the kippo databases, username and passwords to keep the log data centralized, " \
           "run it every time you deploy a new kippo sensor."
     print "Usage:\n" \
           "\tpython kippo_update_mysql.py [-h|clean]\n" \
