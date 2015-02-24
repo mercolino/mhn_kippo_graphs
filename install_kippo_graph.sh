@@ -15,6 +15,10 @@ pip install pymysql numpy matplotlib PILLOW
 cd $MHN_HOME/scripts
 sudo wget https://github.com/threatstream/kippo/raw/master/doc/sql/mysql.sql -O kippo_mysql.sql
 
+mkdir $MHN_HOME/server/mhn/static/img/kippo_graphs
+chown www-data:www-data $MHN_HOME/server/mhn/static/img/kippo_graphs
+
+
 sed -i "150i\            'Ubuntu - Suricata': path.abspath('../scripts/mhn_kippo_graphs/deploy_kippo_MySQL_support.sh')," /opt/mhn/server/mhn/__init__.py
 
 supervisorctl restart mhn-uwsgi
