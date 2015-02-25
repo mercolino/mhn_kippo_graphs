@@ -4,7 +4,7 @@ set -e
 
 # Install MySQL and matplotlib dependencies
 sudo apt-get update
-sudo apt-get install -y mysql-server libpng12-devel libfreetype6-dev libxft-dev
+sudo apt-get install -y mysql-server libpng12-dev libfreetype6-dev libxft-dev
 
 # Getting MHN directory
 MHN_HOME=`dirname $0`/../..
@@ -24,10 +24,7 @@ mkdir $MHN_HOME/server/mhn/static/img/kippo_graphs
 chown www-data:www-data $MHN_HOME/server/mhn/static/img/kippo_graphs
 
 # Adding the kippo with mysql support to mhn app
-sed -i "150i\            'Ubuntu - Kippo with MySQL support': path.abspath('../scripts/mhn_kippo_graphs/deploy_kippo_MySQL_support.sh')," $MHN_HOME/server/mhn/__init__.py
-
-# Reloading the mhn service
-supervisorctl restart mhn-uwsgi
+python insert_deploy_kippo.py %MHN_HOME/server/mhn.db
 
 # Creating CronTab to run the generating graph script every 5 minutes
 crontab -l | { cat; echo "*/5 * * * * python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
