@@ -17,7 +17,7 @@ pip install pymysql numpy matplotlib PILLOW
 
 # Downloading the sql file to create tables on the databases
 cd scripts/
-sudo wget https://github.com/threatstream/kippo/raw/master/doc/sql/mysql.sql -O ../kippo_mysql.sql
+sudo wget https://github.com/threatstream/kippo/raw/master/doc/sql/mysql.sql -O kippo_mysql.sql
 
 # Creating the directory inside mhn server app
 mkdir $MHN_HOME/server/mhn/static/img/kippo_graphs
@@ -28,7 +28,7 @@ cd mhn_kippo_graphs/
 sudo python insert_deploy_kippo.py $MHN_HOME/server/mhn.db
 
 # Creating CronTab to run the generating graph script every 5 minutes
-crontab -l | { cat; echo "*/5 * * * * python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
+crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
 
 # Remember to run this script
 echo "Remember, each time a kippo sensor with MySQL support is installed you should run the following command:"

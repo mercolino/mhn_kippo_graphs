@@ -12,11 +12,14 @@ f = open('deploy_kippo_MySQL_support.sh', 'r')
 date = datetime.now()
 notes = 'Initial deploy script for Ubuntu - Kippo with MySQL support'
 name = 'Ubuntu - Kippo with MySQL support'
-sql = "INSERT INTO deploy_scripts (script,date,notes,name,user_id) " \
-      "VALUES (?, ?, ?, ?, ?)"
-print sql
-cur.execute(sql, (f.read(), date.strftime('%Y-%m-%d %H:%m:%d'), notes, name, 1))
+sql = "SELECT * FROM deploy_scripts where name = ?"
+cur.execute(sql, (name))
 conn.commit()
+if cur.rowcount == 0:
+    sql = "INSERT INTO deploy_scripts (script,date,notes,name,user_id) " \
+          "VALUES (?, ?, ?, ?, ?)"
+    cur.execute(sql, (f.read(), date.strftime('%Y-%m-%d %H:%m:%d'), notes, name, 1))
+    conn.commit()
 conn.close()
 f.close()
 
