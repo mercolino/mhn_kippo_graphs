@@ -25,7 +25,7 @@ chown www-data:www-data $MHN_HOME/server/mhn/static/img/kippo_graphs
 
 # Adding the kippo with mysql support to mhn app
 cd mhn_kippo_graphs/
-python insert_deploy_kippo.py %MHN_HOME/server/mhn.db
+sudo python insert_deploy_kippo.py $MHN_HOME/server/mhn.db
 
 # Creating CronTab to run the generating graph script every 5 minutes
 crontab -l | { cat; echo "*/5 * * * * python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
