@@ -16,14 +16,15 @@ MHN_HOME=`pwd`
 pip install pymysql numpy matplotlib PILLOW
 
 # Downloading the sql file to create tables on the databases
-cd $MHN_HOME/scripts
-sudo wget https://github.com/threatstream/kippo/raw/master/doc/sql/mysql.sql -O kippo_mysql.sql
+cd scripts/
+sudo wget https://github.com/threatstream/kippo/raw/master/doc/sql/mysql.sql -O ../kippo_mysql.sql
 
 # Creating the directory inside mhn server app
 mkdir $MHN_HOME/server/mhn/static/img/kippo_graphs
 chown www-data:www-data $MHN_HOME/server/mhn/static/img/kippo_graphs
 
 # Adding the kippo with mysql support to mhn app
+cd mhn_kippo_graphs/
 python insert_deploy_kippo.py %MHN_HOME/server/mhn.db
 
 # Creating CronTab to run the generating graph script every 5 minutes
