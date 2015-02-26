@@ -6,6 +6,10 @@ set -e
 sudo apt-get update
 sudo apt-get install -y mysql-server libpng12-dev libfreetype6-dev libxft-dev
 
+# Modifying Mysql configuration to allow connection from everywhere
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
+sudo service mysql restart
+
 # Getting MHN directory
 MHN_HOME=`dirname $0`/../..
 cd $MHN_HOME
