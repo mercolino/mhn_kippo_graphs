@@ -36,4 +36,4 @@ crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts
 
 # Remember to run this script
 echo "Remember, each time a kippo sensor with MySQL support is installed you should run the following command:"
-echo "sudo python /opt/mhn/scripts/mhn_kippo_graphs/kippo_update_mysql.py"
+echo "sudo /opt/mhn/env/bin/python /opt/mhn/scripts/mhn_kippo_graphs/kippo_update_mysql.py"
