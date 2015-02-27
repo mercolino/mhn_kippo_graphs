@@ -34,6 +34,35 @@ sudo python insert_deploy_kippo.py $MHN_HOME/server/mhn.db
 # Creating CronTab to run the generating graph script every 5 minutes
 crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
 
+# Modifying Web Application
+# Adding menu item
+sed -i~ '
+/\s*<\/ul>/ {
+N
+/\n.*Right Nav Section.*/ i\
+\                    <li><a href="{{ url_for('kg.kippo_graph') }}">Kippo-Graph</a></li>
+}' $MHN_HOME/server/mhn/templates/base.html
+
+# Registering Blueprint with Flask app
+sed -i~ '
+/mhn\.register_blueprint\(auth\)/ a\
+\
+from mhn.kg.views import kg\
+mhn.register_blueprint(kg)
+' $MHN_HOME/server/mhn/__init__.py
+
+#Copying blueprint and templates and changing the ownerships
+cd $MHN_HOME/scripts/mhn_kippo_graphs
+mkdir $MHN_HOME/server/mhn/kg/
+cp mhn/kg/* $MHN_HOME/server/mhn/kg/
+mkdir $MHN_HOME/server/mhn/templates/kg
+cp mhn/templates/kg/* $MHN_HOME/server/templates/kg
+sudo chown -R www-data:www-data $MHN_HOME/server/mhn/kg/
+sudo chown -R www-data:www-data $MHN_HOME/server/templates/kg
+
+#Restart uwsgi
+sudo supervisorctl restart mhn-uwsgi
+
 # Remember to run this script
 echo "Remember, each time a kippo sensor with MySQL support is installed you should run the following command:"
 echo "sudo /opt/mhn/env/bin/python /opt/mhn/scripts/mhn_kippo_graphs/kippo_update_mysql.py"

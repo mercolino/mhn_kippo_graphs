@@ -20,5 +20,6 @@ KIPPO_GRAPH_RES = 100
 KIPPO_GRAPH_FORMAT = 'png'
 KIPPO_FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
 KIPPO_FONT_SIZE = 48
+KIPPO_THUMB_FACTOR = 2
 
 __author__ = 'mercolino'

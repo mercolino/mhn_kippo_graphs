@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Kippo Sensor Statistics{% endblock %}
+{% block content %}
+<div class="row" style="margin-top:30px;">
+    <div class="large-9 large-centered columns" style="text-align:center;">
+       <h2>
+            Kippo Sensor Statistic Graphs
+       </h2>
+    </div>
+</div>
+{% for sensor,images in data.iteritems() %}
+<div class="row">
+    <div class="row panel" style="text-align:center;">
+        <h2>Sensor: {{ sensor }}</h2>
+    </div>
+    {% for image in images|batch(3) %}
+        <div class = "row panel" style="text-align:center;">
+            {% for img in image %}
+                <div class="large-4 columns" style="text-align:center;">
+                    <h5>{{ img.title }}</h5>
+                </div>
+            {% endfor %}
+        </div>
+        <div class = "row" style="text-align:center;">
+            {% for img in image %}
+                <div class="large-4 columns" style="text-align:center;">
+                    <a class="th" href="{{'/static/img/kippo_graphs/' + img.url}}">
+                        <img src="{{'/static/img/kippo_graphs/' + img.thumb}}">
+                    </a>
+                </div>
+        {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+<hr></hr>
+{% endfor %}
+{% endblock %}

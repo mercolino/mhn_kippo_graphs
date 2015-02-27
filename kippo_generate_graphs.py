@@ -18,12 +18,12 @@ def noGraphGenerated(name):
         font = ImageFont.truetype(conf.KIPPO_FONT, conf.KIPPO_FONT_SIZE)
         textWidth, textHeight = draw.textsize('No Data Available', font)
         draw.text(((drawWidth/2) - (textWidth/2), (drawHeight/2) - (textHeight/2)), "No Data Available", (0, 0, 0), font=font)
+        img.save(conf.KIPPO_GRAPH_PATH + name + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT)
         img.save(conf.KIPPO_GRAPH_PATH + name + '.' + conf.KIPPO_GRAPH_FORMAT)
         os.chown(conf.KIPPO_GRAPH_PATH + name + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
+        os.chown(conf.KIPPO_GRAPH_PATH + name + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     except:
         print 'No enough data to generate the graph %s but no file generated because PIL Library was not found' % name
-
-
 
 
 def getMySQLKippoData():
@@ -65,6 +65,11 @@ def generateBarGraph(x, y, title, graphName):
                 dpi=conf.KIPPO_GRAPH_RES,
                 format=conf.KIPPO_GRAPH_FORMAT,
                 bbox_inches='tight')
+    plt.savefig(conf.KIPPO_GRAPH_PATH + graphName + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT,
+                dpi=conf.KIPPO_GRAPH_RES/conf.KIPPO_THUMB_FACTOR,
+                format=conf.KIPPO_GRAPH_FORMAT,
+                bbox_inches='tight')
+    os.chown(conf.KIPPO_GRAPH_PATH + graphName + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     os.chown(conf.KIPPO_GRAPH_PATH + graphName + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     plt.clf()
 
@@ -82,6 +87,11 @@ def generateLineGraph(x, y, title, graphName):
                 dpi=conf.KIPPO_GRAPH_RES,
                 format=conf.KIPPO_GRAPH_FORMAT,
                 bbox_inches='tight')
+    plt.savefig(conf.KIPPO_GRAPH_PATH + graphName + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT,
+                dpi=conf.KIPPO_GRAPH_RES/conf.KIPPO_THUMB_FACTOR,
+                format=conf.KIPPO_GRAPH_FORMAT,
+                bbox_inches='tight')
+    os.chown(conf.KIPPO_GRAPH_PATH + graphName + '_th' + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     os.chown(conf.KIPPO_GRAPH_PATH + graphName + '.' + conf.KIPPO_GRAPH_FORMAT, pwd.getpwnam("www-data").pw_uid, grp.getgrnam("www-data").gr_gid)
     plt.clf()
 
