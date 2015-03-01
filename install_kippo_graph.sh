@@ -51,7 +51,7 @@ N
 sed -i~ "
 /mhn.register_blueprint(auth)/ a\
 \
-from mhn.kg.views import kg\
+from mhn.kg.views import kg \
 mhn.register_blueprint(kg)
 " $MHN_HOME/server/mhn/__init__.py
 
