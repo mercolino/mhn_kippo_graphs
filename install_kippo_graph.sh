@@ -45,7 +45,7 @@ sed -i~ '
 N
 /\n.*Right Nav Section.*/ i\
 \                    <li><a href="{{ url_for('\''kg.kippo_graph'\'') }}">Kippo-Graph</a></li>
-} $MHN_HOME/server/mhn/templates/base.html
+}' $MHN_HOME/server/mhn/templates/base.html
 
 # Registering Blueprint with Flask app
 sed -i~ '
