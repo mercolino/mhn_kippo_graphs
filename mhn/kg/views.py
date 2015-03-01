@@ -16,7 +16,7 @@ def kippo_graph():
                   'top_10_ssh_clients': 'Top 10 SSH Clients',
                   'top_10_overall_input': 'Top 10 Input (Overall)',
                   'top_10_successful_input': 'Top 10 Successful Input',
-                  'top_10_failed_input': 'Top 10 Successful Input',
+                  'top_10_failed_input': 'Top 10 Failed Input',
                   'most_successful_logins_per_day': 'Most Successful Logins per day (Top 20)',
                   'successes_per_day': 'Successes per day',
                   'successes_per_week': 'Successes per Week',
