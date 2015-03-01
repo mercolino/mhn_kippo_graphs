@@ -37,23 +37,23 @@ crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts
 
 # Modifying Web Application
 # Removing blank lines in base.html
-sed -i~ '/^\s*$/d' $MHN_HOME/server/mhn/templates/base.html
+sed -i~ "/^\s*$/d" $MHN_HOME/server/mhn/templates/base.html
 
 # Adding menu item
-sed -i~ '
+sed -i~ "
 /\s*<\/ul>/ {
 N
 /\n.*Right Nav Section.*/ i\
-\                    <li><a href="{{ url_for(\'kg.kippo_graph\') }}">Kippo-Graph</a></li>
-}' $MHN_HOME/server/mhn/templates/base.html
+\                    <li><a href="{{ url_for('kg.kippo_graph') }}">Kippo-Graph</a></li>
+}" $MHN_HOME/server/mhn/templates/base.html
 
 # Registering Blueprint with Flask app
-sed -i~ '
+sed -i~ "
 /mhn.register_blueprint(auth)/ a\
 \
 from mhn.kg.views import kg\
 mhn.register_blueprint(kg)
-' $MHN_HOME/server/mhn/__init__.py
+" $MHN_HOME/server/mhn/__init__.py
 
 #Copying blueprint and templates and changing the ownerships
 cd $MHN_HOME/scripts/mhn_kippo_graphs
