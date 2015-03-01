@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 # Install MySQL and matplotlib dependencies
 sudo apt-get update
