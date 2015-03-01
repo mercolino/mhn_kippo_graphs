@@ -35,17 +35,20 @@ sudo python insert_deploy_kippo.py $MHN_HOME/server/mhn.db
 crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
 
 # Modifying Web Application
+# Removing blank lines in base.html
+sed -i~ '/^\s*$/d' $MHN_HOME/server/mhn/templates/base.html
+
 # Adding menu item
 sed -i~ '
 /\s*<\/ul>/ {
 N
 /\n.*Right Nav Section.*/ i\
-\                    <li><a href="{{ url_for('kg.kippo_graph') }}">Kippo-Graph</a></li>
+\                    <li><a href="{{ url_for(\'kg.kippo_graph\') }}">Kippo-Graph</a></li>
 }' $MHN_HOME/server/mhn/templates/base.html
 
 # Registering Blueprint with Flask app
 sed -i~ '
-/mhn\.register_blueprint\(auth\)/ a\
+/mhn.register_blueprint(auth)/ a\
 \
 from mhn.kg.views import kg\
 mhn.register_blueprint(kg)
@@ -54,11 +57,11 @@ mhn.register_blueprint(kg)
 #Copying blueprint and templates and changing the ownerships
 cd $MHN_HOME/scripts/mhn_kippo_graphs
 mkdir $MHN_HOME/server/mhn/kg/
-cp mhn/kg/* $MHN_HOME/server/mhn/kg/
-mkdir $MHN_HOME/server/mhn/templates/kg
-cp mhn/templates/kg/* $MHN_HOME/server/templates/kg
+sudo cp mhn/kg/* $MHN_HOME/server/mhn/kg/
+mkdir $MHN_HOME/server/mhn/templates/kg/
+sudo cp mhn/templates/kg/* $MHN_HOME/server/mhn/templates/kg/
 sudo chown -R www-data:www-data $MHN_HOME/server/mhn/kg/
-sudo chown -R www-data:www-data $MHN_HOME/server/templates/kg
+sudo chown -R www-data:www-data $MHN_HOME/server/mhn/templates/kg/
 
 #Restart uwsgi
 sudo supervisorctl restart mhn-uwsgi
