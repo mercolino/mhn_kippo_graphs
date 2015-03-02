@@ -36,6 +36,9 @@ sudo python insert_deploy_kippo.py $MHN_HOME/server/mhn.db
 crontab -l | { cat; echo "*/5 * * * * $MHN_HOME/env/bin/python $MHN_HOME/scripts/mhn_kippo_graphs/kippo_generate_graphs.py"; } | crontab -
 
 # Modifying Web Application
+# Modifying configuration file to add channel kippo-mysql
+sed -i~ '$i\    '\''kippo-mysql'\'' : ['\''kippo.sessions'\'']' $MHN_HOME/server/config.py
+
 # Removing blank lines in base.html
 sed -i~ "/^\s*$/d" $MHN_HOME/server/mhn/templates/base.html
 
