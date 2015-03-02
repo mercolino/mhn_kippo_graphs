@@ -16,7 +16,7 @@ deploy_key=$2
 wget $server_url/static/registration.txt -O registration.sh
 chmod 755 registration.sh
 # Note: this will export the HPF_* variables
-. ./registration.sh $server_url $deploy_key "kippo-mysql"
+. ./registration.sh $server_url $deploy_key "kippo"
 
 apt-get update
 apt-get -y install python-dev openssl python-openssl python-pyasn1 python-twisted git python-pip supervisor authbind python-mysqldb

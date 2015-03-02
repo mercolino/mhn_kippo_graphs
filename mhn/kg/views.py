@@ -26,7 +26,7 @@ def kippo_graph():
                   'human_activity_busiest_days': 'Human Activity busiest days (Top 20)',
                   'human_activity_per_day': 'Human Activity per day',
                   'human_activity_per_week': 'Human Activity per Week', }
-        sensors = Sensor.query.filter_by(honeypot='kippo-mysql').all()
+        sensors = Sensor.query.filter_by(honeypot='kippo').all()
         data = {}
         for sr in sensors:
                 subdata = []
