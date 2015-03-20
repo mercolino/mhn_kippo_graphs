@@ -198,12 +198,17 @@ def generateSuccessRatio(database):
     cur.execute(sql)
     if cur.rowcount != 0:
         countSuccess = []
+        Success=[]
         for (success, countSuc) in cur.fetchall():
+            if success == 0:
+                Success.append('Failure')
+            elif success == 1:
+                Success.append('Success')
             countSuccess.append(countSuc)
         cur.close()
         conn.close()
         title = 'Overall Success Ratio'
-        generateBarGraph(['Failure', 'Success'], countSuccess, title, 'success_ratio_' + database)
+        generateBarGraph(Success, countSuccess, title, 'success_ratio_' + database)
     else:
         noGraphGenerated('success_ratio_' + database)
 
