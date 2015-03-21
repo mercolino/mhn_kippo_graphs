@@ -35,11 +35,15 @@
         <div class = "row" style="text-align:center;">
             {% for img in image %}
                 <div class="large-4 columns" style="text-align:center;">
-                    <a class="th" href="{{'/static/img/kippo_graphs/' + img.url}}">
+                    <a class = 'th' data-reveal-id="{{ 'Modal'~loop.index }}" href="#">
                         <img src="{{'/static/img/kippo_graphs/' + img.thumb}}">
                     </a>
+                    <div id="{{ 'Modal'~loop.index }}" class="reveal-modal medium text-center" data-reveal aria-hidden="true" role="dialog">
+                        <img src="{{'/static/img/kippo_graphs/' + img.url}}">
+                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                    </div>
                 </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     {% endfor %}
        </div>
