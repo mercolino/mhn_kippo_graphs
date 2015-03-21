@@ -24,29 +24,29 @@
         {% else %}
            <div class="content" id="{{ sensor }}">
         {% endif %}
-           {% for image in images|batch(3) %}
-        <div class = "row panel" style="text-align:center;">
-            {% for img in image %}
-                <div class="large-4 columns" style="text-align:center;">
-                    <h5>{{ img.title }}</h5>
-                </div>
-            {% endfor %}
-        </div>
-        <div class = "row" style="text-align:center;">
-            {% for img in image %}
-                <div class="large-4 columns" style="text-align:center;">
-                    <a class = 'th' data-reveal-id="{{ 'Modal'~loop.index }}" href="#">
-                        <img src="{{'/static/img/kippo_graphs/' + img.thumb}}">
-                    </a>
-                    <div id="{{ 'Modal'~loop.index }}" class="reveal-modal medium text-center" data-reveal aria-hidden="true" role="dialog">
-                        <img src="{{'/static/img/kippo_graphs/' + img.url}}">
-                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        {% for image in images|batch(3) %}
+            {% set rowloop = loop %}
+            <div class = "row panel" style="text-align:center;">
+                {% for img in image %}
+                    <div class="large-4 columns" style="text-align:center;">
+                        <h5>{{ img.title }}</h5>
                     </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
-       </div>
+                {% endfor %}
+            </div>
+            <div class = "row" style="text-align:center;">
+                {% for img in image %}
+                    <div class="large-4 columns" style="text-align:center;">
+                        <a class = 'th' data-reveal-id="{{ 'Modal-'~rowloop.index~'-'~loop.index }}" href="#">
+                            <img src="{{'/static/img/kippo_graphs/' + img.thumb}}">
+                        </a>
+                        <div id="{{ 'Modal-'~rowloop.index~'-'~loop.index }}" class="reveal-modal medium text-center" data-reveal aria-hidden="true" role="dialog">
+                            <img src="{{'/static/img/kippo_graphs/' + img.url}}">
+                            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
     {% endfor %}
 </div>
 {% endblock %}
