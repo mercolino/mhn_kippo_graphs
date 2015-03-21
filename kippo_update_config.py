@@ -21,6 +21,8 @@ KIPPO_GRAPH_FORMAT = 'png'
 KIPPO_FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
 KIPPO_FONT_SIZE = 48
 KIPPO_THUMB_FACTOR = 2
+
+#You could choose from bmh, dark_background, fivethirtyeight, ggplot or grayscale, visit matplotlib documentation for more information
 KIPPO_STYLE = 'ggplot'
 
 __author__ = 'mercolino'
