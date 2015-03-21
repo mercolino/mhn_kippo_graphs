@@ -8,12 +8,23 @@
        </h2>
     </div>
 </div>
-{% for sensor,images in data.iteritems() %}
-<div class="row">
-    <div class="row panel" style="text-align:center;">
-        <h2>Sensor: {{ sensor }}</h2>
-    </div>
-    {% for image in images|batch(3) %}
+<dl class="tabs vertical" data-tab>
+    {% for sensor,images in data.iteritems() %}
+        {% if loop.index == 1 %}
+            <dd class="tab-title active"><a href="{{ '#'~sensor }}">{{ 'Sensor '~sensor }}</a></dd>
+        {% else %}
+            <dd class="tab-title"><a href="{{ '#'~sensor }}">{{ 'Sensor '~sensor }}</a></dd>
+        {% endif %}
+    {% endfor %}
+</dl>
+<div class="tabs-content">
+    {% for sensor,images in data.iteritems() %}
+        {% if loop.index ==1 %}
+            <div class="content active" id="{{ sensor }}">
+        {% else %}
+           <div class="content" id="{{ sensor }}">
+        {% endif %}
+           {% for image in images|batch(3) %}
         <div class = "row panel" style="text-align:center;">
             {% for img in image %}
                 <div class="large-4 columns" style="text-align:center;">
@@ -31,7 +42,7 @@
         {% endfor %}
         </div>
     {% endfor %}
+       </div>
+    {% endfor %}
 </div>
-<hr></hr>
-{% endfor %}
 {% endblock %}
