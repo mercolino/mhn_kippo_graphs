@@ -54,6 +54,7 @@ def autolabel(rects):
 
 def generateBarGraph(x, y, title, graphName):
     """Function to generate the Bar Graphs with matplotlib"""
+    plt.style.use(conf.KIPPO_STYLE)
     plt.title(title)
     rects = plt.bar(range(len(x)), y, align='center')
     plt.xticks(range(len(x)), x, rotation=50, size='small', ha='right')
@@ -76,6 +77,7 @@ def generateBarGraph(x, y, title, graphName):
 
 def generateLineGraph(x, y, title, graphName):
     """Function to generate the Line Graphs with matplotlib"""
+    plt.style.use(conf.KIPPO_STYLE)
     plt.title(title)
     plt.plot(range(len(x)), y, marker='o', markersize=5)
     plt.xticks(range(len(x)), x, rotation=50, size='small', ha='right')

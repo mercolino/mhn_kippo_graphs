@@ -18,7 +18,7 @@ MHN_HOME=`pwd`
 
 # Installing pymysql numpy matplotlib and PILLOW
 . env/bin/activate
-pip install pymysql numpy matplotlib PILLOW
+pip install pymysql numpy matplotlib>=1.4.3 PILLOW
 
 # Downloading the sql file to create tables on the databases
 cd scripts/
