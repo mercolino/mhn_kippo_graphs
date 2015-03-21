@@ -77,7 +77,7 @@ def generateBarGraph(x, y, title, graphName):
 def generateLineGraph(x, y, title, graphName):
     """Function to generate the Line Graphs with matplotlib"""
     plt.title(title)
-    plt.plot(range(len(x)), y)
+    plt.plot(range(len(x)), y, marker='o', markersize=5)
     plt.xticks(range(len(x)), x, rotation=50, size='small', ha='right')
     plt.axes().set_ylim([0, max(y)*1.2])
     plt.axes().yaxis.grid(True, lw=1, ls='--', c='.75')
