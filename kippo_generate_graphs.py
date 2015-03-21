@@ -380,7 +380,7 @@ def generateTop10FailedInput(database):
             countInput.append(countInp)
         cur.close()
         conn.close()
-        title = 'Top 10 Successful Input'
+        title = 'Top 10 Failed Input'
         generateBarGraph(input, countInput, title, 'top_10_failed_input_' + database)
     else:
         noGraphGenerated('top_10_failed_input_' + database)
